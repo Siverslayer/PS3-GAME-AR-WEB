@@ -1,11 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>AR Games</title>
-    <link rel="stylesheet" href="index.css">
-    <script src="index.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .game-content {
+            display: none;
+        }
+        .game-content img {
+            width: 200px;
+            height: 150px;
+            margin: 10px;
+        }
+        .categories {
+            margin-bottom: 20px;
+        }
+        .search {
+            margin-bottom: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function showContent() {
+            var selectedValue = document.getElementById("game-categories").value;
+            if(selectedValue === "all") {
+                showAllGames();
+            } else {
+                var allGameContent = document.getElementsByClassName("game-content");
+                for (var i = 0; i < allGameContent.length; i++) {
+                    allGameContent[i].style.display = "none";
+                }
+                var selectedContent = document.getElementById(selectedValue);
+                selectedContent.style.display = "block";
+            }
+        }
+
+        function showAllGames() {
+            var allGameContent = document.getElementsByClassName("game-content");
+            for (var i = 0; i < allGameContent.length; i++) {
+                allGameContent[i].style.display = "block";
+            }
+        }
+
+        function search() {
+            var keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+            if (keyword !== "") {
+                var found = false;
+                var gamesDatabase = {
+                    "crash-cars.html": ["كراش سيارات", "crash cars", "", ""],
+                    "mario-page.html": ["ماريو", "mario"],
+                    "zelda-page.html": ["زيلدا", "zelda"],
+                    "page1.html": ["demon souls", "ديمون سولز"],
+                    "page2.html": ["mickey mouse", "ميكي ماوس"]
+                };
+
+                for (var gameUrl in gamesDatabase) {
+                    var keywords = gamesDatabase[gameUrl];
+                    for (var i = 0; i < keywords.length; i++) {
+                        if (keywords[i].includes(keyword)) {
+                            window.location.href = gameUrl;
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        break;
+                    }
+                }
+                if (!found) {
+                    alert("لم يتم العثور على اللعبة.");
+                }
+            } else {
+                alert("يرجى إدخال كلمة للبحث.");
+            }
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -15,14 +91,15 @@
     </nav>
 
     <!-- قائمة منسدلة لتصنيفات الألعاب -->
-    <div class="categories" id="categories">
+    <div class="categories">
         <label for="game-categories"></label>
-        <select id="game-categories" class="custom-select" onchange="showContent()">
+        <select id="game-categories" onchange="showContent()">
+            <option value="all">ALL GAME</option>
             <option value="ps3-games">PS3 GAME</option>
             <option value="ps2-games">PS2 GAME</option>
             <option value="ps1-games">PS1 GAME</option>
             <option value="apps">APPS</option>
-            <option value="fix">FIx</option>
+            <option value="fix">FIX</option>
         </select>
     </div>
     <div class="search">
@@ -33,66 +110,22 @@
     <br><br><br><br><br><br>
 
     <!-- محتوى الألعاب التي تنتمي لتصنيف PS3 GAME -->
-    <div id="ps3-games" class="game-content" style="display: none;">
+    <div id="ps3-games" class="game-content">
+        <a href="crash-cars.html"><img src="ps3 img/carch car.jpg" alt="صورة 1"></a>
         <a href="page1.html"><img src="ps3 img/demon ss.jpg" alt="صورة 2"></a>
         <a href="page2.html"><img src="ps3 img/ميكي ماوس.jpg" alt="صورة 3"></a>
     </div>
 
     <!-- محتوى الألعاب التي تنتمي لتصنيف PS2 GAME -->
-    <div id="ps2-games" class="game-content" style="display: none;">
-        <a href="crash-cars.html"><img src="ps2 img/carch car.jpg" alt="صورة 1"></a>
+    <div id="ps2-games" class="game-content">
         <a href="page2.html"><img src="ps2 img/idk.jpg" alt="صورة 1"></a>
         <a href="page3.html"><img src="ps2 img/mortl.jpg" alt="صورة 2"></a>
     </div>
 
+    <!-- إضافة محتوى إضافي لأمثلة أخرى -->
     
     <footer>
         <p>AR GAMES</p>
     </footer>
-
-    <script>
-        function showContent() {
-            var selectedValue = document.getElementById("game-categories").value;
-            var allGameContent = document.querySelectorAll(".game-content");
-            
-            allGameContent.forEach(function(content) {
-                content.style.display = "none";
-            });
-            
-            var selectedContent = document.getElementById(selectedValue);
-            selectedContent.style.display = "block";
-        }
-
-        function search() {
-            var keyword = document.getElementById("searchInput").value.trim(); 
-            if (keyword !== "") {
-                var found = false;
-                var gamesDatabase = {
-                    "crash-cars.html": ["كراش سيارات", "crash cars", "", ""],
-                    "mario-page.html": ["ماريو", "mario"],
-                    "zelda-page.html": ["زيلدا", "zelda"]
-                };
-
-                for (var gameUrl in gamesDatabase) {
-                    var keywords = gamesDatabase[gameUrl]; 
-                    for (var i = 0; i < keywords.length; i++) {
-                        if (keywords[i].includes(keyword)) {
-                            window.location.href = gameUrl; 
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (found) {
-                        break;
-                    }
-                }
-                if (!found) {
-                    alert("لم يتم العثور على اللعبة."); 
-                }
-            } else {
-                alert("يرجى إدخال كلمة للبحث."); 
-            }
-        }
-    </script>
 </body>
 </html>
