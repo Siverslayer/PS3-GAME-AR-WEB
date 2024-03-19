@@ -1,73 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Website</title>
+    <title>موقع الألعاب</title>
     <link rel="stylesheet" href="index.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        .categories {
-            position: fixed;
-            top: 100px;
-            left: 23px;
-        }
-        .search {
-            margin-top: 20px;
-        }
-        .search input {
-            padding: 5px;
-        }
-        .search button {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-        .footer {
-            margin-top: 50px;
-        }
-    </style>
-    <script>
-        var gamesDatabase = {
-            "crash-cars.html": ["Crash Cars", "crash cars", "", ""],
-            "mario-page.html": ["Mario", "mario"],
-            "zelda-page.html": ["Zelda", "zelda"],
-            // You can add more games here...
-        };
-
-        function search() {
-            var keyword = document.getElementById("searchInput").value.trim().toLowerCase();
-            if (keyword !== "") {
-                var found = false;
-                for (var gameUrl in gamesDatabase) {
-                    var keywords = gamesDatabase[gameUrl];
-                    for (var i = 0; i < keywords.length; i++) {
-                        if (keywords[i].toLowerCase().includes(keyword)) {
-                            window.location.href = gameUrl;
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (found) {
-                        break;
-                    }
-                }
-                if (!found) {
-                    alert("Game not found.");
-                }
-            } else {
-                alert("Please enter a keyword.");
-            }
-        }
-    </script>
+    <script src="index.js" defer></script>
 </head>
 <body>
-    <header></header>
-    <nav></nav>
+    <header>
+    </header>
+
+    <nav>
+
+    </nav>
+
+    <!-- قائمة منسدلة لتصنيفات الألعاب -->
     <div class="categories" id="categories">
         <label for="game-categories"></label>
         <select id="game-categories" class="custom-select">
@@ -78,24 +26,26 @@
         </select>
     </div>
     <div class="search">
-        <input type="text" id="searchInput" placeholder="Search here...">
-        <button onclick="search()">Search</button>
+        <input type="text" id="searchInput" placeholder="search here...">
+        <button onclick="search()">search</button>
     </div>
+
     <br>
     <br>
     <br>
     <br>
     <br>
     <br>
-    <a href="crash-cars.html"><img src="ps2 img/carch car.jpg" alt="Game Image 1"></a>
-    <a href="page2.html"><img src="ps2 img/idk.jpg" alt="Game Image 2"></a>
-    <a href="page3.html"><img src="ps2 img/mortl.jpg" alt="Game Image 3"></a>
-    <a href="page1.html"><img src="ps3 img/demon ss.jpg" alt="Game Image 4"></a>
-    <br>
-    <br>
-    <a href="page2.html"><img src="ps3 img/ميكي ماوس.jpg" alt="Game Image 5"></a>
+    <a href="crash-cars.html"><img src="ps2 img/carch car.jpg" alt="صورة 1"></a>
+    <a href="page2.html"><img src="ps2 img/idk.jpg" alt="صورة 2"></a>
+    <a href="page3.html"><img src="ps2 img/mortl.jpg" alt="صورة 3"></a>
+    <a href="page1.html"><img src="ps3 img/demon ss.jpg" alt="صورة 1"></a>
+
+<br>
+<br>
+<a href="page2.html"><img src="ps3 img/ميكي ماوس.jpg" alt="صورة 2"></a>
     <footer>
-        <p>Game Website</p>
+        <p> AR GAMES</p>
     </footer>
 </body>
 </html>
