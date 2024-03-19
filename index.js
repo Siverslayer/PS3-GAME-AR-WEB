@@ -15,14 +15,14 @@ var gamesDatabase = {
 
 // البحث
 function search() {
-    var keyword = document.getElementById("searchInput").value.trim(); // الحصول على الكلمة المفتاحية من الحقل النصي
+    var keyword = document.getElementById("searchInput").value.trim().toLowerCase(); // الحصول على الكلمة المفتاحية من الحقل النصي وتحويلها إلى حالة صغيرة
     if (keyword !== "") {
         var found = false;
         // مقارنة الكلمات الرئيسية المدخلة مع الكلمات الرئيسية في قاعدة البيانات
         for (var gameUrl in gamesDatabase) {
             var keywords = gamesDatabase[gameUrl]; // الكلمات الرئيسية لهذا العنصر في قاعدة البيانات
             for (var i = 0; i < keywords.length; i++) {
-                if (keywords[i].includes(keyword)) {
+                if (keywords[i].toLowerCase().includes(keyword)) { // تحويل الكلمات الرئيسية في قاعدة البيانات إلى حالة صغيرة للمقارنة
                     window.location.href = gameUrl; // إعادة توجيه المستخدم إلى الصفحة المطلوبة إذا تم العثور على تطابق
                     found = true;
                     break;
@@ -39,4 +39,3 @@ function search() {
         alert("يرجى إدخال كلمة للبحث."); 
     }
 }
-
