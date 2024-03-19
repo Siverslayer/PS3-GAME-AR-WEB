@@ -1,5 +1,6 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>AR Games</title>
@@ -8,29 +9,35 @@
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
         }
+
         .game-content {
             display: none;
         }
+
         .game-content img {
             width: 200px;
             height: 150px;
             margin: 10px;
         }
+
         .categories {
             margin-bottom: 20px;
         }
+
         .search {
             margin-bottom: 20px;
         }
+
         footer {
             text-align: center;
             margin-top: 20px;
         }
+
     </style>
     <script>
         function showContent() {
             var selectedValue = document.getElementById("game-categories").value;
-            if(selectedValue === "all") {
+            if (selectedValue === "all") {
                 showAllGames();
             } else {
                 var allGameContent = document.getElementsByClassName("game-content");
@@ -65,17 +72,22 @@
                 "page2.html": ["mickey mouse", "ميكي ماوس"]
             };
 
+            var allGameContent = document.getElementsByClassName("game-content");
+            for (var i = 0; i < allGameContent.length; i++) {
+                allGameContent[i].style.display = "none";
+            }
+
             for (var gameUrl in gamesDatabase) {
                 var keywords = gamesDatabase[gameUrl];
                 for (var i = 0; i < keywords.length; i++) {
                     if (keywords[i].includes(keyword)) {
-                        window.location.href = gameUrl;
-                        found = true;
+                        var matchedContent = document.getElementById(gameUrl.replace(".html", ""));
+                        if (matchedContent) {
+                            matchedContent.style.display = "block";
+                            found = true;
+                        }
                         break;
                     }
-                }
-                if (found) {
-                    break;
                 }
             }
 
@@ -86,17 +98,17 @@
 
         window.onload = function() {
             document.getElementById("searchButton").addEventListener("click", search);
+            showAllGames();
         }
+
     </script>
 </head>
+
 <body>
     <header>
     </header>
-
     <nav>
     </nav>
-
-    <!-- قائمة منسدلة لتصنيفات الألعاب -->
     <div class="categories">
         <label for="game-categories"></label>
         <select id="game-categories" onchange="showContent()">
@@ -115,23 +127,20 @@
 
     <br><br><br><br><br><br>
 
-    <!-- محتوى الألعاب التي تنتمي لتصنيف PS3 GAME -->
     <div id="ps3-games" class="game-content">
         <a href="crash-cars.html"><img src="ps3 img/carch car.jpg" alt="صورة 1"></a>
         <a href="page1.html"><img src="ps3 img/demon ss.jpg" alt="صورة 2"></a>
         <a href="page2.html"><img src="ps3 img/ميكي ماوس.jpg" alt="صورة 3"></a>
     </div>
 
-    <!-- محتوى الألعاب التي تنتمي لتصنيف PS2 GAME -->
     <div id="ps2-games" class="game-content">
         <a href="page2.html"><img src="ps2 img/idk.jpg" alt="صورة 1"></a>
         <a href="page3.html"><img src="ps2 img/mortl.jpg" alt="صورة 2"></a>
     </div>
 
-    <!-- إضافة محتوى إضافي لأمثلة أخرى -->
-    
     <footer>
         <p>AR GAMES</p>
     </footer>
 </body>
+
 </html>
