@@ -1,0 +1,114 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+}
+
+/* Header Styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2em;
+}
+
+/* Navigation Styles */
+nav {
+  text-align: center;
+  margin-top: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 1.2em;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #1f9f7d;
+}
+
+/* Main Content Styles */
+main {
+  padding: 20px;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+/* تخصيص الستايل للقائمة المنسدلة */
+.custom-select {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 150px;
+    margin-top: 10px;
+    background-color: #fff;
+  }
+  
+  .custom-select:focus {
+    outline: none;
+    border-color: #666;
+  }
+  
+
+  /* تخصيص حقل البحث */
+.search {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.search input[type="text"] {
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.search button {
+    padding: 10px 20px;
+    background-color: #3e3e3e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search button:hover {
+    background-color: #01234757;
+}
+img {
+    width: 400px;
+    height: 400px;
+    margin-right: 20px;
+    margin-left:40px;
+}
