@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة اللعبة</title>
+    <title>AR GAMES</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -19,11 +19,11 @@
         .game-info {
             display: flex;
             align-items: center;
-            justify-content: flex-end; /* تحديد محاذاة العناصر إلى اليمين */
+            justify-content: flex-end;
             margin-top: 50px;
         }
         .game-image {
-            margin-left: 20px; /* تحريك الصورة لليمين */
+            margin-left: 20px;
         }
         .game-image img {
             width: 300px;
@@ -31,7 +31,7 @@
         }
         .game-details {
             text-align: right;
-            margin-right: 20px; /* تحريك وصف اللعبة واسمها إلى اليمين */
+            margin-right: 20px;
         }
         .game-details h1 {
             font-size: 24px;
@@ -42,18 +42,18 @@
         .download-buttons {
             margin-top: 20px;
         }
-        .download-buttons button {
+        .download-buttons a {
+            display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
             margin-right: 10px;
             background-color: #434343;
             color: #fff;
-            border: none;
+            text-decoration: none;
             border-radius: 5px;
-            cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .download-buttons button:hover {
+        .download-buttons a:hover {
             background-color: #35607cd0;
         }
         .footer {
@@ -63,24 +63,23 @@
 </head>
 <body>
     <div class="header">
-        <h1>اسم الموقع</h1>
+        <h1>AR GAMES</h1>
     </div>
     <div class="game-info">
         <div class="game-details">
-            <h1>carch car</h1>
-            <p>carch carcarch carcarch carcarch carcarch carcarch carcarch carcarch carcarch carcarch carcarch carcarch carcarch carcarch carcarch car</p>
+            <h1>Crash Nitro Kart</h1>
+            <p>Crash Nitro Kart is a fast-paced racing video game featuring characters from the Crash Bandicoot series. Players can race against each other or against computer-controlled opponents on various tracks filled with obstacles and power-ups. The game offers colorful graphics, exciting gameplay, and a variety of game modes, making it enjoyable for both casual and competitive gamers.</p>
             <div class="download-buttons">
-                <button>تنزيل 1</button>
-                <button>تنزيل 2</button>
-                <button>تنزيل 3</button>
+                <a class="torrent-button" href="download-link-torrent.html">Download Torrent</a>
+                <a href="https://archive.org/download/1_20230504_20230504_0641/Crash%20Bandicoot%20-%20Nitro%20Kart%20%5BPS2%20Classics%5D%20%5BSLUS20649%5D.pkg">Download PKG</a>
             </div>
         </div>
         <div class="game-image">
-            <img src="/ps2 img/carch car.jpg" alt="صورة اللعبة">
+            <img src="ps2_img/crach_car_dow.jpg" alt="صورة اللعبة">
         </div>
     </div>
     <div class="footer">
-        <p><a href="#">العودة إلى الصفحة الرئيسية</a></p>
+        <p><a href="index.html">Back Home Page</a></p>
     </div>
 </body>
 </html>
