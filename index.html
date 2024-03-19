@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ar games</title>
+    <title>AR Games</title>
     <link rel="stylesheet" href="index.css">
     <script src="index.js" defer></script>
 </head>
@@ -12,43 +12,87 @@
     </header>
 
     <nav>
-
     </nav>
 
     <!-- قائمة منسدلة لتصنيفات الألعاب -->
     <div class="categories" id="categories">
         <label for="game-categories"></label>
-        <select id="game-categories" class="custom-select">
-            <option value="game">ALL GAME</option>
-            <option value="sony3">PS3 GAME</option>
-            <option value="sony2">PS2 GAME</option>
-            <option value="sony1">PS1 GAME</option>
-            <option value="APPS">APPS</option>
-            <option value="FIx">FIx</option>
-
+        <select id="game-categories" class="custom-select" onchange="showContent()">
+            <option value="ps3-games">PS3 GAME</option>
+            <option value="ps2-games">PS2 GAME</option>
+            <option value="ps1-games">PS1 GAME</option>
+            <option value="apps">APPS</option>
+            <option value="fix">FIx</option>
         </select>
     </div>
     <div class="search">
-        <input type="text" id="searchInput" placeholder="search here...">
-        <button onclick="search()">search</button>
+        <input type="text" id="searchInput" placeholder="Search here...">
+        <button onclick="search()">Search</button>
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <a href="crash-cars.html"><img src="ps2 img/carch car.jpg" alt="صورة 1"></a>
-    <a href="page2.html"><img src="ps2 img/idk.jpg" alt="صورة 2"></a>
-    <a href="page3.html"><img src="ps2 img/mortl.jpg" alt="صورة 3"></a>
-    <a href="page1.html"><img src="ps3 img/demon ss.jpg" alt="صورة 1"></a>
+    <br><br><br><br><br><br>
 
-<br>
-<br>
-<a href="page2.html"><img src="ps3 img/ميكي ماوس.jpg" alt="صورة 2"></a>
+    <!-- محتوى الألعاب التي تنتمي لتصنيف PS3 GAME -->
+    <div id="ps3-games" class="game-content" style="display: none;">
+        <a href="page1.html"><img src="ps3 img/demon ss.jpg" alt="صورة 2"></a>
+        <a href="page2.html"><img src="ps3 img/ميكي ماوس.jpg" alt="صورة 3"></a>
+    </div>
+
+    <!-- محتوى الألعاب التي تنتمي لتصنيف PS2 GAME -->
+    <div id="ps2-games" class="game-content" style="display: none;">
+        <a href="crash-cars.html"><img src="ps2 img/carch car.jpg" alt="صورة 1"></a>
+        <a href="page2.html"><img src="ps2 img/idk.jpg" alt="صورة 1"></a>
+        <a href="page3.html"><img src="ps2 img/mortl.jpg" alt="صورة 2"></a>
+    </div>
+
+    
     <footer>
-        <p> AR GAMES</p>
+        <p>AR GAMES</p>
     </footer>
+
+    <script>
+        function showContent() {
+            var selectedValue = document.getElementById("game-categories").value;
+            var allGameContent = document.querySelectorAll(".game-content");
+            
+            allGameContent.forEach(function(content) {
+                content.style.display = "none";
+            });
+            
+            var selectedContent = document.getElementById(selectedValue);
+            selectedContent.style.display = "block";
+        }
+
+        function search() {
+            var keyword = document.getElementById("searchInput").value.trim(); 
+            if (keyword !== "") {
+                var found = false;
+                var gamesDatabase = {
+                    "crash-cars.html": ["كراش سيارات", "crash cars", "", ""],
+                    "mario-page.html": ["ماريو", "mario"],
+                    "zelda-page.html": ["زيلدا", "zelda"]
+                };
+
+                for (var gameUrl in gamesDatabase) {
+                    var keywords = gamesDatabase[gameUrl]; 
+                    for (var i = 0; i < keywords.length; i++) {
+                        if (keywords[i].includes(keyword)) {
+                            window.location.href = gameUrl; 
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) {
+                        break;
+                    }
+                }
+                if (!found) {
+                    alert("لم يتم العثور على اللعبة."); 
+                }
+            } else {
+                alert("يرجى إدخال كلمة للبحث."); 
+            }
+        }
+    </script>
 </body>
 </html>
