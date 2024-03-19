@@ -50,7 +50,7 @@
         }
 
         function search() {
-            var keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+            var keyword = document.getElementById("searchInput").value.toLowerCase();
             if (keyword !== "") {
                 var found = false;
                 var gamesDatabase = {
@@ -81,6 +81,10 @@
                 alert("يرجى إدخال كلمة للبحث.");
             }
         }
+
+        window.onload = function() {
+            document.getElementById("searchButton").addEventListener("click", search);
+        }
     </script>
 </head>
 <body>
@@ -104,7 +108,7 @@
     </div>
     <div class="search">
         <input type="text" id="searchInput" placeholder="Search here...">
-        <button onclick="search()">Search</button>
+        <button id="searchButton">Search</button>
     </div>
 
     <br><br><br><br><br><br>
