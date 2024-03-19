@@ -50,35 +50,37 @@
         }
 
         function search() {
-            var keyword = document.getElementById("searchInput").value.toLowerCase();
-            if (keyword !== "") {
-                var found = false;
-                var gamesDatabase = {
-                    "crash-cars.html": ["كراش سيارات", "crash cars", "", ""],
-                    "mario-page.html": ["ماريو", "mario"],
-                    "zelda-page.html": ["زيلدا", "zelda"],
-                    "page1.html": ["demon souls", "ديمون سولز"],
-                    "page2.html": ["mickey mouse", "ميكي ماوس"]
-                };
+            var keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+            if (keyword === "") {
+                alert("يرجى إدخال كلمة للبحث.");
+                return;
+            }
 
-                for (var gameUrl in gamesDatabase) {
-                    var keywords = gamesDatabase[gameUrl];
-                    for (var i = 0; i < keywords.length; i++) {
-                        if (keywords[i].includes(keyword)) {
-                            window.location.href = gameUrl;
-                            found = true;
-                            break;
-                        }
-                    }
-                    if (found) {
+            var found = false;
+            var gamesDatabase = {
+                "crash-cars.html": ["كراش سيارات", "crash cars"],
+                "mario-page.html": ["ماريو", "mario"],
+                "zelda-page.html": ["زيلدا", "zelda"],
+                "page1.html": ["demon souls", "ديمون سولز"],
+                "page2.html": ["mickey mouse", "ميكي ماوس"]
+            };
+
+            for (var gameUrl in gamesDatabase) {
+                var keywords = gamesDatabase[gameUrl];
+                for (var i = 0; i < keywords.length; i++) {
+                    if (keywords[i].includes(keyword)) {
+                        window.location.href = gameUrl;
+                        found = true;
                         break;
                     }
                 }
-                if (!found) {
-                    alert("لم يتم العثور على اللعبة.");
+                if (found) {
+                    break;
                 }
-            } else {
-                alert("يرجى إدخال كلمة للبحث.");
+            }
+
+            if (!found) {
+                alert("لم يتم العثور على اللعبة.");
             }
         }
 
