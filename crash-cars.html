@@ -1,85 +1,42 @@
-<!DOCTYPE html>
-<html lang="ar">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR GAMES</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
+    <script>
+        function downloadGame() {
+            var gameUrl = "https://archive.org/download/1_20230504_20230504_0641/Crash%20Bandicoot%20-%20Nitro%20Kart%20%5BPS2%20Classics%5D%20%5BSLUS20649%5D.pkg";
+            var request = new XMLHttpRequest();
+            request.open("GET", gameUrl, true);
+            request.responseType = "arraybuffer";
+            request.onload = function() {
+                if (request.status === 200) {
+                    var arrayBuffer = request.response;
+                    var bytes = new Uint8Array(arrayBuffer);
+                    var saveFile = new Blob([bytes], { type: "application/octet-stream" });
+                    window.saveFile = window.webkitRequestFileSystem || window.requestFileSystem;
+                    window.saveFile(window.TEMPORARY, 1024 * 1024 * 1024, function(fs) {
+                        fs.root.getDirectory("app_home", { create: true }, function(dirEntry) {
+                            dirEntry.getFile("crash-nitro-kart.pkg", { create: true }, function(fileEntry) {
+                                fileEntry.createWriter(function(writer) {
+                                    writer.onwriteend = function() {
+                                        console.log("File downloaded successfully!");
+                                    };
+                                    writer.onerror = function(e) {
+                                        console.error("File download error: " + e.toString());
+                                    };
+                                    var blob = new Blob([saveFile], { type: "application/octet-stream" });
+                                    writer.write(blob);
+                                }, function(e) { console.error("File writer error: " + e.toString()); });
+                            }, function(e) { console.error("Get file error: " + e.toString()); });
+                        }, function(e) { console.error("Get directory error: " + e.toString()); });
+                    }, function(e) { console.error("Request file system error: " + e.toString()); });
+                }
+            };
+            request.send();
         }
-        .header {
-            background-color: #434343;
-            color: #fff;
-            padding: 10px;
-        }
-        .game-info {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            margin-top: 50px;
-        }
-        .game-image {
-            margin-left: 20px;
-        }
-        .game-image img {
-            width: 300px;
-            height: 300px;
-        }
-        .game-details {
-            text-align: right;
-            margin-right: 20px;
-        }
-        .game-details h1 {
-            font-size: 24px;
-        }
-        .game-details p {
-            font-size: 18px;
-        }
-        .download-buttons {
-            margin-top: 20px;
-        }
-        .download-buttons a {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-right: 10px;
-            background-color: #434343;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .download-buttons a:hover {
-            background-color: #35607cd0;
-        }
-        .footer {
-            margin-top: 50px;
-        }
-    </style>
+    </script>
 </head>
 <body>
-    <div class="header">
-        <h1>AR GAMES</h1>
-    </div>
-    <div class="game-info">
-        <div class="game-details">
-            <h1>Crash Nitro Kart</h1>
-            <p>Crash Nitro Kart is a fast-paced racing video game featuring characters from the Crash Bandicoot series. Players can race against each other or against computer-controlled opponents on various tracks filled with obstacles and power-ups. The game offers colorful graphics, exciting gameplay, and a variety of game modes, making it enjoyable for both casual and competitive gamers.</p>
-            <div class="download-buttons">
-                <a class="torrent-button" href="download-link-torrent.html">Download Torrent</a>
-                <a href="http://archive.org/download/1_20230504_20230504_0641/Crash%20Bandicoot%20-%20Nitro%20Kart%20%5BPS2%20Classics%5D%20%5BSLUS20649%5D.pkg">Download PKG</a>
-            </div>
-        </div>
-        <div class="game-image">
-            <img src="ps2_img/crach_car_dow.jpg" alt="صورة اللعبة">
-        </div>
-    </div>
-    <div class="footer">
-        <p><a href="index.html">Back Home Page</a></p>
-    </div>
+    <button onclick="downloadGame()">dow</button>
 </body>
 </html>
