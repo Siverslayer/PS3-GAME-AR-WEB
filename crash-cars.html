@@ -5,38 +5,48 @@
     <script>
         function downloadGame() {
             var gameUrl = "http://archive.org/download/1_20230504_20230504_0641/Crash%20Bandicoot%20-%20Nitro%20Kart%20%5BPS2%20Classics%5D%20%5BSLUS20649%5D.pkg";
-            var request = new XMLHttpRequest();
-            request.open("GET", gameUrl, true);
-            request.responseType = "arraybuffer";
-            request.onload = function() {
-                if (request.status === 200) {
-                    var arrayBuffer = request.response;
-                    var bytes = new Uint8Array(arrayBuffer);
-                    var saveFile = new Blob([bytes], { type: "application/octet-stream" });
-                    window.saveFile = window.webkitRequestFileSystem || window.requestFileSystem;
-                    window.saveFile(window.TEMPORARY, 1024 * 1024 * 1024, function(fs) {
-                        fs.root.getDirectory("app_home", { create: true }, function(dirEntry) {
-                            dirEntry.getFile("crash-nitro-kart.pkg", { create: true }, function(fileEntry) {
-                                fileEntry.createWriter(function(writer) {
-                                    writer.onwriteend = function() {
-                                        console.log("File downloaded successfully!");
-                                    };
-                                    writer.onerror = function(e) {
-                                        console.error("File download error: " + e.toString());
-                                    };
-                                    var blob = new Blob([saveFile], { type: "application/octet-stream" });
-                                    writer.write(blob);
-                                }, function(e) { console.error("File writer error: " + e.toString()); });
-                            }, function(e) { console.error("Get file error: " + e.toString()); });
-                        }, function(e) { console.error("Get directory error: " + e.toString()); });
-                    }, function(e) { console.error("Request file system error: " + e.toString()); });
-                }
-            };
-            request.send();
+            
+            // Check if we're running on the PS3 browser
+            var userAgent = navigator.userAgent.toLowerCase();
+            var isPS3Browser = userAgent.indexOf('playstation 3') > -1;
+            
+            // Use a different method for downloading on PS3 browser
+            if (isPS3Browser) {
+                window.location.href = gameUrl;
+            } else {
+                var request = new XMLHttpRequest();
+                request.open("GET", gameUrl, true);
+                request.responseType = "arraybuffer";
+                request.onload = function() {
+                    if (request.status === 200) {
+                        var arrayBuffer = request.response;
+                        var bytes = new Uint8Array(arrayBuffer);
+                        var saveFile = new Blob([bytes], { type: "application/octet-stream" });
+                        window.saveFile = window.webkitRequestFileSystem || window.requestFileSystem;
+                        window.saveFile(window.TEMPORARY, 1024 * 1024 * 1024, function(fs) {
+                            fs.root.getDirectory("app_home", { create: true }, function(dirEntry) {
+                                dirEntry.getFile("crash-nitro-kart.pkg", { create: true }, function(fileEntry) {
+                                    fileEntry.createWriter(function(writer) {
+                                        writer.onwriteend = function() {
+                                            console.log("File downloaded successfully!");
+                                        };
+                                        writer.onerror = function(e) {
+                                            console.error("File download error: " + e.toString());
+                                        };
+                                        var blob = new Blob([saveFile], { type: "application/octet-stream" });
+                                        writer.write(blob);
+                                    }, function(e) { console.error("File writer error: " + e.toString()); });
+                                }, function(e) { console.error("Get file error: " + e.toString()); });
+                            }, function(e) { console.error("Get directory error: " + e.toString()); });
+                        }, function(e) { console.error("Request file system error: " + e.toString()); });
+                    }
+                };
+                request.send();
+            }
         }
     </script>
 </head>
 <body>
-    <button onclick="downloadGame()">dow</button>
+    <button onclick="downloadGame()">Download Game</button>
 </body>
 </html>
