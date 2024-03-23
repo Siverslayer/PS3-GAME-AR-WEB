@@ -31,8 +31,9 @@ git clone https://github.com/Siverslayer/PS3-GAME-AR-WEB.git
 
 ## الصانعان
 Siverslayer.
+-
 Темный.
-
+-
 ##
 شكرا لكل من سيحاول تطويره او تعديله 
 اذا كنت تحتاج اي مساعده يمكنك التواصل معي عن طريقه ديسكورد
