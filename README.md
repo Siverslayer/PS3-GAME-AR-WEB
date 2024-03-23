@@ -21,8 +21,9 @@
 ## الاستخدام
 
 لاستخدام PS3 WEB، قم بنسخ المستودع وافتح المشروع في محرر الشفرة المفضل لديك:
+افتح cmd او vsc او vs و اكتب هذه الامر
 
-git clone https://github.com/username/ps3-web.git
+git clone https://github.com/Siverslayer/PS3-GAME-AR-WEB.git
 
 
 ثم، يمكنك فتح ملفات المشروع وإجراء أي تعديلات أو تحسينات ضرورية او اشء تريده.
